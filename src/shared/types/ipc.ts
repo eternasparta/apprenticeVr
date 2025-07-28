@@ -132,6 +132,8 @@ export interface IPCSendChannels {
   'adb:stop-tracking-devices': void
   'download:cancel': string
   'download:retry': string
+  'download:pause': string
+  'download:resume': string
   'download:set-download-path': string
   'upload:remove': string
   'upload:cancel': string

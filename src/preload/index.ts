@@ -110,6 +110,10 @@ const api = {
       typedIpcRenderer.send('download:cancel', releaseName),
     retryDownload: (releaseName: string): void =>
       typedIpcRenderer.send('download:retry', releaseName),
+    pauseDownload: (releaseName: string): void =>
+      typedIpcRenderer.send('download:pause', releaseName),
+    resumeDownload: (releaseName: string): void =>
+      typedIpcRenderer.send('download:resume', releaseName),
     deleteDownloadedFiles: (releaseName: string): Promise<boolean> =>
       typedIpcRenderer.invoke('download:delete-files', releaseName),
     installFromCompleted: (releaseName: string, deviceId: string): Promise<void> =>

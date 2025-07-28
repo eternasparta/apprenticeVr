@@ -96,6 +96,26 @@ export const DownloadProvider: React.FC<DownloadProviderProps> = ({ children }) 
     }
   }, [])
 
+  const pauseDownload = useCallback((releaseName: string): void => {
+    console.log(`Context: Pausing ${releaseName}...`)
+    try {
+      window.api.downloads.pauseDownload(releaseName)
+    } catch (err) {
+      console.error('Error pausing download via IPC:', err)
+      setError(`Failed to pause download.`)
+    }
+  }, [])
+
+  const resumeDownload = useCallback((releaseName: string): void => {
+    console.log(`Context: Resuming ${releaseName}...`)
+    try {
+      window.api.downloads.resumeDownload(releaseName)
+    } catch (err) {
+      console.error('Error resuming download via IPC:', err)
+      setError(`Failed to resume download.`)
+    }
+  }, [])
+
   const deleteFiles = useCallback(async (releaseName: string): Promise<boolean> => {
     console.log(`Context: Deleting downloaded files for ${releaseName}...`)
     try {
@@ -120,6 +140,8 @@ export const DownloadProvider: React.FC<DownloadProviderProps> = ({ children }) 
     removeFromQueue,
     cancelDownload,
     retryDownload,
+    pauseDownload,
+    resumeDownload,
     deleteFiles
   }
 

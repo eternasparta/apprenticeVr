@@ -336,6 +336,13 @@ app.whenReady().then(async () => {
     downloadService.retryDownload(releaseName)
   )
 
+  typedIpcMain.on('download:pause', (_event, releaseName) =>
+    downloadService.pauseDownload(releaseName)
+  )
+  typedIpcMain.on('download:resume', (_event, releaseName) =>
+    downloadService.resumeDownload(releaseName)
+  )
+
   typedIpcMain.on('download:set-download-path', (_event, path) =>
     downloadService.setDownloadPath(path)
   )

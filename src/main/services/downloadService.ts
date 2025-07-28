@@ -517,6 +517,20 @@ class DownloadService extends EventEmitter implements DownloadAPI {
     return Promise.resolve()
   }
 
+  public pauseDownload(releaseName: string): void {
+    const item = this.queueManager.findItem(releaseName)
+    if (item) {
+      this.downloadProcessor.pauseDownload(releaseName)
+    }
+  }
+
+  public resumeDownload(releaseName: string): void {
+    const item = this.queueManager.findItem(releaseName)
+    if (item) {
+      this.downloadProcessor.resumeDownload(item)
+    }
+  }
+
   public async deleteDownloadedFiles(releaseName: string): Promise<boolean> {
     const item = this.queueManager.findItem(releaseName)
     if (!item) {

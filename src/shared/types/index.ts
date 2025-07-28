@@ -117,6 +117,7 @@ export interface UploadItem {
 export type DownloadStatus =
   | 'Queued'
   | 'Downloading'
+  | 'Paused'
   | 'Completed'
   | 'Error'
   | 'Cancelled'
@@ -257,6 +258,8 @@ export interface DownloadAPI {
   removeFromQueue: (releaseName: string) => Promise<void>
   cancelUserRequest: (releaseName: string) => void
   retryDownload: (releaseName: string) => void
+  pauseDownload: (releaseName: string) => void
+  resumeDownload: (releaseName: string) => void
   deleteDownloadedFiles: (releaseName: string) => Promise<boolean>
   setDownloadPath: (path: string) => void
   setAppConnectionState: (selectedDevice: string | null, isConnected: boolean) => void

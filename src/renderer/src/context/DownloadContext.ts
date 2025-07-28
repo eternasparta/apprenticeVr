@@ -9,6 +9,8 @@ export interface DownloadContextType {
   removeFromQueue: (releaseName: string) => Promise<void>
   cancelDownload: (releaseName: string) => void
   retryDownload: (releaseName: string) => void
+  pauseDownload: (releaseName: string) => void
+  resumeDownload: (releaseName: string) => void
   deleteFiles: (releaseName: string) => Promise<boolean>
 }
 
